@@ -13,6 +13,9 @@ import './root/assets/vendor/glightbox/css/glightbox.min.css';
 import './root/assets/vendor/swiper/swiper-bundle.min.css';
 import './root/assets/css/main.css';
 import './root/assets/vendor/bootstrap/js/bootstrap.bundle.min.js';
+import LoginForm from './pages/LoginForm';
+import RegisterForm from './pages/RegisterFormProps';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>;
 <script src="./root/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>;
@@ -24,7 +27,18 @@ import './root/assets/vendor/bootstrap/js/bootstrap.bundle.min.js';
 function App() {
   return (
     <>
-      <ProductList />
+
+      <BrowserRouter >
+        <Routes>
+
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/register" element={<RegisterForm />} />
+          <Route path="/" element={<ProductList />} />
+
+
+
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

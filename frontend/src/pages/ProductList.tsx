@@ -15,6 +15,7 @@ interface Product {
 
 function ProductList() {
     const [products, setProducts] = useState<Product[]>([]);
+    const [userRole, setUserRole] = useState('');
 
     useEffect(() => {
         // Gửi yêu cầu GET đến endpoint /api/v1/product
@@ -36,8 +37,31 @@ function ProductList() {
             });
     }, []); // useEffect sẽ chỉ được gọi một lần sau khi component được render lần đầu tiên
 
+
+
+    useEffect(() => {
+        // Lấy thông tin về vai trò của người dùng từ token JWT
+        const token = localStorage.getItem('token');
+        if (token) {
+            const decodedToken: any = parseJwt(token);
+            setUserRole(decodedToken.role);
+        }
+    }, []);
+
     return (
-        <>
+        <><div>
+            {userRole === 'admin' ? (
+                <div>
+                    {/* Hiển thị nội dung cho quản trị viên */}
+                    <h1>Admin Dashboard</h1>
+                </div>
+            ) : (
+                <div>
+                    {/* Hiển thị nội dung cho người dùng */}
+                    <h1>User Dashboard</h1>
+                </div>
+            )}
+        </div>
             {/* <h2>Product List</h2>
 
             {products.map(product => (
@@ -47,7 +71,7 @@ function ProductList() {
                 <img src={product.imageUrl} alt="" />
 
             ))} */}
-            <header id="header" className="header fixed-top d-flex align-items-center">
+            {/* <header id="header" className="header fixed-top d-flex align-items-center">
                 <div className="container d-flex align-items-center justify-content-between">
 
                     <a href="index.html" className="logo d-flex align-items-center me-auto me-lg-0">
@@ -121,9 +145,15 @@ function ProductList() {
 
 
                 </div>
-            </section>
+            </section> */}
         </>
     );
 }
-
+function parseJwt(token: string) {
+    try {
+        return JSON.parse(atob(token.split('.')[1]));
+    } catch (e) {
+        return null;
+    }
+}
 export default ProductList;
