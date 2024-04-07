@@ -16,10 +16,11 @@ import './root/assets/vendor/bootstrap/js/bootstrap.bundle.min.js';
 import LoginForm from './pages/LoginForm';
 import RegisterForm from './pages/RegisterFormProps';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import ProductDetail from './pages/ProductDetail';
+import CartPage from "./pages/CartPage";
+import Dasboard from "./admin/Dasboard";
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>;
-<script src="./root/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>;
-<script src="./root/assets/vendor/aos/aos.js"></script>;
 <script src="./root/assets/vendor/glightbox/js/glightbox.min.js"></script>;
 <script src="./root/assets/vendor/purecounter/purecounter_vanilla.js"></script>;
 <script src="./root/assets/vendor/swiper/swiper-bundle.min.js"></script>;
@@ -34,8 +35,9 @@ function App() {
           <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/" element={<ProductList />} />
-
-
+          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/admin/Dasboard" element={<Dasboard />} />
 
         </Routes>
       </BrowserRouter>
