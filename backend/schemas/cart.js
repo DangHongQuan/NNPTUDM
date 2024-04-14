@@ -6,7 +6,7 @@ var cartShema = new mongoose.Schema(
         idUser: String,
         name: String,
         nameProduct: String,
-        toltalPrice: Number,
+        totalPrice: String,
         address: String,
         phone: String,
 

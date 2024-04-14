@@ -4,6 +4,7 @@ import { MDBBtn, MDBContainer, MDBIcon, MDBInput } from "mdb-react-ui-kit";
 import { useState } from "react";
 import Header from "../component/Header";
 import { useNavigate } from "react-router-dom";
+import {message} from "antd";
 // const LoginForm: React.FC = () => {
 //     const [formData, setFormData] = useState({
 //         email: '',
@@ -97,15 +98,15 @@ function LoginForm() {
 
             if (!response.ok) {
                 throw new Error('Login failed');
+                message.error("Login failed");
             }
-
-            // Lưu token vào local storage hoặc state để sử dụng cho các yêu cầu sau này
+            message.success("Login success")
             const data = await response.json();
             localStorage.setItem('token', data.token);
-navigate("/")
-            // Thực hiện các hành động tiếp theo sau khi đăng nhập thành công, ví dụ: chuyển hướng người dùng đến trang chính
+ navigate("/")
         } catch (error) {
             console.error('Login error:', error);
+            message.error("Login failed");
         }
     };
 
@@ -124,14 +125,14 @@ navigate("/")
                               className='p-5 d-flex flex-column align-items-center mx-auto w-100'>
 
                             <h2 className="fw-bold mb-2 text-uppercase">Login</h2>
-                            <p className="text-white-50 mb-5">Please enter your login and password!</p>
+                            <p className="text-white-50 mb-5 ">Please enter your login and password!</p>
                             <label className="form-label">
-                                Email:
+                                <label className="text-white">Email:</label>
                                 <input className="form-control pe-5" type="email" name="email" value={formData.email}
                                        onChange={handleChange} required/>
                             </label>
                             <label className="form-label">
-                                Password:
+                                <label  className="text-white">Password:</label>
                                 <input className="form-control pe-5" type="password" name="password"
                                        value={formData.password} onChange={handleChange} required/>
                             </label>
@@ -157,7 +158,7 @@ navigate("/")
                             </div>
 
                             <div>
-                                <p className="mb-0">Don't have an account? <a href="#!"
+                                <p className="mb-0">Don't have an account? <a href="/register"
                                                                               className="text-white-50 fw-bold">Sign
                                     Up</a></p>
 

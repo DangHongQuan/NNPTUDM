@@ -2,11 +2,11 @@ var mongoose = require("mongoose");
 
 var productShema = new mongoose.Schema(
   {
-    id: Number,
     name: String,
     price: Number,
     imageUrl: String,
     describe: String,
+      categoryId: String,
     isDeleted: {
       type: Boolean,
       default: false,

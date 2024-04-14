@@ -61,11 +61,9 @@ function ProductList() {
                 <div className="container">
                     <div className="row justify-content-between gy-5">
                         <div className="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
-                            <h2 >Enjoy Your Healthy<br />Delicious Food</h2>
-                            <p data-aos-delay="100">Sed autem laudantium dolores. Voluptatem itaque ea consequatur eveniet. Eum quas beatae cumque eum quaerat.</p>
+                            <h2 >Enjoy your <br />Shopping</h2>
                             <div className="d-flex" data-aos-delay="200">
-                                <a href="#book-a-table" className="btn-book-a-table">Book a Table</a>
-                                <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" className="glightbox btn-watch-video d-flex align-items-center"><i className="bi bi-play-circle"></i><span>Watch Video</span></a>
+                                <a href="https://www.youtube.com/@CellphoneSOfficial" className="glightbox btn-watch-video d-flex align-items-center"><i className="bi bi-play-circle"></i><span>Watch Video</span></a>
                             </div>
                         </div>
                         <div className="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
@@ -78,12 +76,10 @@ function ProductList() {
                 <div className=" row">
                     {products.map(product => (
                         <div className='col-lg-4 ' key={product.id}>
-                            <h1>{product.name}</h1>
-                            <p>{product.price}</p>
-                            <p>{product.describe}</p>
+
 
                             <Link to={`/product/${product._id}`}>
-                                <img style={{ width: '300px' }} src={product.imageUrl} alt={product.imageUrl} />
+                                <img style={{width: '300px', height: "300px"}} src={product.imageUrl} alt={product.imageUrl}/>
                             </Link>
                         </div>
                     ))}

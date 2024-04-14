@@ -1,32 +1,57 @@
 import React, { useEffect, useState } from 'react';
+import {Col, Container, Nav, Navbar, Row} from 'react-bootstrap';
 import {useNavigate} from "react-router-dom";
 
-
+import  navAdmin from "../component/NavAdmin"
+import NavAdmin from "../component/NavAdmin";
 
 
 const Dasboard: React.FC = () => {
     const [userRole, setUserRole] = useState('');
     const navigate = useNavigate();
+    const token = localStorage.getItem('token');
     useEffect(() => {
-        // Lấy thông tin về vai trò của người dùng từ token JWT
-        const token = localStorage.getItem('token');
+        if (!token) {
+            navigate('/login');
+            return;
+        }
+    }, []);
+    useEffect(() => {
+
+
         if (token) {
             const decodedToken: any = parseJwt(token);
             setUserRole(decodedToken.role);
+
         }
 
     }, []);
     useEffect(() => {
-        if (userRole !== 'admin') {
-            navigate('/');
+       if (userRole === "user") {
+
+            navigate("/")
         }
     }, [userRole, navigate]);
+
+
     return (
         <>
-            <div>
-                <h1>admin</h1>
+            <Container fluid>
+                <Row className="vh-100">
+                    <Col md={2} className="bg-primary">
+                       <NavAdmin/>
+                    </Col>
+                    <Col md={10}>
 
-            </div>
+                        <Container fluid className="mt-5">
+                            {/* Your dashboard content goes here */}
+                            <h2>Welcome to the Dashboard</h2>
+                            <p>This is a simple admin dashboard layout.</p>
+                        </Container>
+                    </Col>
+                </Row>
+            </Container>
+
         </>
     );
 };
